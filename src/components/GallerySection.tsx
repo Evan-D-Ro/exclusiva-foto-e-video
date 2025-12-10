@@ -41,14 +41,14 @@ const GallerySection = () => {
 
   return (
     <section ref={sectionRef} id="portfolio" className="section-padding bg-foreground relative overflow-hidden">
-      {/* Camera Viewfinder Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Corner Brackets */}
-        <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-primary/30" />
-        <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-primary/30" />
-        <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-primary/30" />
-        <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-primary/30" />
-        
+      {/* Camera Viewfinder Background - AJUSTADO PARA MOBILE */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        {/* Corner Brackets - Margens menores no mobile (top-4/left-4) e normais no desktop (md:top-8) */}
+        <div className="absolute top-4 left-4 md:top-8 md:left-8 w-12 h-12 md:w-16 md:h-16 border-l-2 border-t-2 border-primary/30" />
+        <div className="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 md:w-16 md:h-16 border-r-2 border-t-2 border-primary/30" />
+        <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 w-12 h-12 md:w-16 md:h-16 border-l-2 border-b-2 border-primary/30" />
+        <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-12 h-12 md:w-16 md:h-16 border-r-2 border-b-2 border-primary/30" />
+
         {/* Center Focus Point */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 opacity-20">
           <div className="absolute inset-0 border border-primary-foreground/30 rounded-full animate-pulse" />
@@ -58,16 +58,16 @@ const GallerySection = () => {
             <div className="absolute w-full h-px bg-primary-foreground/20" />
           </div>
         </div>
-        
+
         {/* Grid Lines */}
         <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-10">
           {[...Array(4)].map((_, i) => (
             <div key={`v-${i}`} className="border-r border-primary-foreground/30" style={{ gridColumn: i + 1 }} />
           ))}
         </div>
-        
+
         {/* Camera Info Overlay */}
-        <div className="absolute bottom-12 left-12 text-primary-foreground/40 font-mono text-xs space-y-1 hidden md:block">
+        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 text-primary-foreground/40 font-mono text-xs space-y-1 hidden md:block">
           <div className="flex items-center gap-2">
             <Aperture className="w-3 h-3" />
             <span>f/2.8</span>
@@ -77,8 +77,8 @@ const GallerySection = () => {
             <span>1/250s</span>
           </div>
         </div>
-        
-        <div className="absolute bottom-12 right-12 text-primary-foreground/40 font-mono text-xs hidden md:block">
+
+        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 text-primary-foreground/40 font-mono text-xs hidden md:block">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
             <span>REC</span>
@@ -86,9 +86,11 @@ const GallerySection = () => {
         </div>
       </div>
 
-      <div className="container-custom relative z-10">
+      {/* Adicionado padding extra no container para mobile (px-6 py-4) para afastar das bordas */}
+      <div className="container-custom relative z-10 px-6 py-4 md:px-0 md:py-0">
         {/* Header */}
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Reduzida a margem inferior no mobile (mb-10 md:mb-16) */}
+        <div className={`text-center max-w-3xl mx-auto mb-10 md:mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary font-semibold tracking-widest uppercase text-sm mb-6">
             <Camera className="w-4 h-4" />
             Portfólio
@@ -102,9 +104,9 @@ const GallerySection = () => {
         </div>
 
         {/* Gallery Grid with Camera Frame Effect */}
-        <div className="relative">
-          {/* Main Camera Frame */}
-          <div className="absolute -inset-4 md:-inset-8 border-2 border-primary-foreground/10 rounded-lg pointer-events-none">
+        <div className="relative m-4">
+          {/* Main Camera Frame - Ajustado inset para mobile */}
+          <div className="absolute -inset-2 md:-inset-8 border-2 border-primary-foreground/10 rounded-lg pointer-events-none">
             {/* Frame corners */}
             <div className="absolute -top-1 -left-1 w-6 h-6 border-l-4 border-t-4 border-primary rounded-tl" />
             <div className="absolute -top-1 -right-1 w-6 h-6 border-r-4 border-t-4 border-primary rounded-tr" />
@@ -128,7 +130,7 @@ const GallerySection = () => {
                   alt={image.alt}
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 />
-                
+
                 {/* Hover Overlay with Camera Effect */}
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/60 transition-all duration-500">
                   {/* Focus brackets animation */}
@@ -138,7 +140,7 @@ const GallerySection = () => {
                     <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-primary" />
                     <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-primary" />
                   </div>
-                  
+
                   {/* Center focus point */}
                   <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${focusedImage === index ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="w-8 h-8 border border-primary rounded-full flex items-center justify-center">
@@ -146,9 +148,9 @@ const GallerySection = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Image info on hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-foreground/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-foreground/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                   <p className="text-primary-foreground text-sm font-medium">{image.alt}</p>
                   <p className="text-primary-foreground/60 text-xs mt-1">Clique para ampliar</p>
                 </div>
@@ -156,44 +158,35 @@ const GallerySection = () => {
             ))}
           </div>
         </div>
-
-        {/* Shutter Animation Element */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          <div className="w-full h-full max-w-md max-h-md opacity-0 group-hover:opacity-100">
-            {/* Shutter blades would animate here on click */}
-          </div>
-        </div>
       </div>
 
-      {/* Lightbox with Camera Shutter Effect */}
+      {/* Lightbox (Sem alterações necessárias aqui) */}
       {selectedImage !== null && (
         <div
           className="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-md flex items-center justify-center p-4 animate-shutter-open"
           onClick={() => setSelectedImage(null)}
         >
-          {/* Camera viewfinder overlay */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-primary/50" />
             <div className="absolute top-4 right-4 w-12 h-12 border-r-2 border-t-2 border-primary/50" />
             <div className="absolute bottom-4 left-4 w-12 h-12 border-l-2 border-b-2 border-primary/50" />
             <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-primary/50" />
           </div>
-          
+
           <button
             className="absolute top-6 right-6 text-primary-foreground p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
             onClick={() => setSelectedImage(null)}
           >
             <X className="w-6 h-6" />
           </button>
-          
+
           <div className="relative max-w-5xl w-full">
             <img
               src={galleryImages[selectedImage].src}
               alt={galleryImages[selectedImage].alt}
               className="w-full max-h-[85vh] object-contain rounded-lg animate-scale-in"
             />
-            
-            {/* Image info */}
+
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-foreground to-transparent">
               <p className="text-primary-foreground text-lg font-medium">{galleryImages[selectedImage].alt}</p>
               <p className="text-primary-foreground/60 text-sm mt-1">

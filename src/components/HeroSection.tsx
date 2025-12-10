@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, ChevronDown } from "lucide-react";
+import { MessageCircle, ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-graduation.jpg";
 import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,106 +14,76 @@ const HeroSection = () => {
   return (
     <section
       id="inicio"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen w-full overflow-hidden"
     >
-      {/* Background Image */}
+      {/* 1. Background Image com Zoom Lento */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Formandos celebrando"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-[10s] ease-out scale-105 hover:scale-110"
         />
-      </div>
-      
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/80 via-foreground/60 to-foreground/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-foreground/40 via-transparent to-foreground/40" />
-      
-      {/* Animated Light Rays */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-primary-foreground/20 via-primary-foreground/5 to-transparent transform -skew-x-12 animate-light-ray" />
-        <div className="absolute top-0 left-1/2 w-1 h-full bg-gradient-to-b from-primary-foreground/15 via-primary-foreground/5 to-transparent transform skew-x-12 animate-light-ray animation-delay-300" />
-        <div className="absolute top-0 right-1/4 w-1 h-full bg-gradient-to-b from-primary-foreground/10 via-primary-foreground/5 to-transparent transform -skew-x-6 animate-light-ray animation-delay-500" />
-      </div>
-      
-      {/* Subtle Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/40 rounded-full animate-float" />
-        <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-primary-foreground/20 rounded-full animate-float animation-delay-200" />
-        <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-primary/30 rounded-full animate-float animation-delay-400" />
+        {/* Overlay Escuro apenas na parte inferior e esquerda para leitura */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent sm:via-black/20" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container-custom text-center text-primary-foreground">
-        <div className="max-w-5xl mx-auto">
-          {/* Animated Badge */}
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <span className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 text-sm font-medium tracking-widest uppercase mb-8">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+      {/* 2. Conteúdo Alinhado à Esquerda/Baixo */}
+      <div className="relative z-10 container mx-auto h-full flex flex-col justify-end pb-28 sm:pb-42 px-4 sm:px-6">
+        <div className={`max-w-2xl transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+
+          {/* Tagline pequena e elegante */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className={`h-[1px] w-12 bg-primary transition-all duration-1000 delay-300 ${isVisible ? 'w-12' : 'w-0'}`} />
+            <span className="text-primary-foreground/80 text-sm font-medium tracking-[0.2em] uppercase">
               Exclusiva Foto e Vídeo
             </span>
           </div>
-          
-          {/* Main Heading with Letter Animation */}
-          <h1 className={`font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <span className="block">Sua formatura,</span>
-            <span className="block mt-2 relative">
-              <span className="relative inline-block">
-                eternizada
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-foreground/60 to-transparent animate-shimmer-line" />
-              </span>
-            </span>
-            <span className="block mt-2">com exclusividade.</span>
+
+          {/* Título Compacto e Impactante */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+            Eternizando sua <br />
+            <span className="text-primary-foreground">conquista</span> com a <br />
+            grandeza que ela merece.
           </h1>
-          
-          {/* Subtitle */}
-          <p className={`text-lg md:text-xl lg:text-2xl text-primary-foreground/80 max-w-3xl mx-auto mb-12 font-light leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Transformamos momentos únicos em lembranças que duram para sempre, 
-            com emoção, qualidade e atenção aos detalhes.
+
+          {/* Texto de apoio limpo */}
+          <p className="text-lg text-gray-300 font-light max-w-lg mb-8 leading-relaxed">
+            Não é apenas sobre tirar fotos. É sobre capturar a emoção genuína de um ciclo que se encerra e o brilho do novo que começa.
           </p>
-          
-          {/* CTA Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Button variant="hero" size="xl" asChild className="group relative overflow-hidden">
+
+          {/* Botões alinhados */}
+          <div className="flex flex-col sm:flex-row gap-4 items-start">
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 h-12 rounded-none border-l-2 border-white/20 hover:border-white transition-all"
+              asChild
+            >
               <a
                 href="https://wa.me/5544998611548"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="flex items-center gap-2"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-primary-foreground/0 via-primary-foreground/20 to-primary-foreground/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <MessageCircle className="w-5 h-5 transition-transform group-hover:scale-110" />
-                Fale Conosco
+                <FaWhatsapp className="!w-8 !h-8" />
+                Orçamento via WhatsApp
               </a>
             </Button>
-            <Button 
-              variant="ghost" 
-              size="lg" 
+
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-transparent border-white/20 text-white hover:bg-white hover:text-black h-12 rounded-none px-8 backdrop-blur-sm transition-all"
               asChild
-              className="text-primary-foreground border border-primary-foreground/30 hover:bg-primary-foreground/10 hover:text-primary-foreground backdrop-blur-sm"
             >
-              <a href="#sobre" className="group">
-                Conheça nosso trabalho
-                <ChevronDown className="w-4 h-4 ml-2 transition-transform group-hover:translate-y-1" />
+              <a href="#sobre" className="flex items-center gap-2 group">
+                Ver Portfolio
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <a href="#sobre" className="block group">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-primary-foreground/60 text-xs tracking-widest uppercase">Scroll</span>
-            <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/40 flex items-start justify-center p-1.5 group-hover:border-primary-foreground/60 transition-colors">
-              <div className="w-1 h-2 bg-primary-foreground/60 rounded-full animate-scroll-indicator" />
-            </div>
-          </div>
-        </a>
-      </div>
-
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

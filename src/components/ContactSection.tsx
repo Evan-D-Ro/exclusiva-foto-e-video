@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import galleryImage from "@/assets/gallery-2.jpg";
+import { FaWhatsapp } from "react-icons/fa";
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,16 +26,16 @@ const ContactSection = () => {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="contato" 
+      id="contato"
       className="section-padding relative overflow-hidden"
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img 
-          src={galleryImage} 
-          alt="" 
+        <img
+          src={galleryImage}
+          alt=""
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-accent/80" />
@@ -58,20 +59,21 @@ const ContactSection = () => {
               <span className="text-primary">formatura?</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
-              Entre em contato conosco e solicite um orçamento. Estamos prontos para 
+              Entre em contato conosco e solicite um orçamento. Estamos prontos para
               transformar seu grande dia em lembranças eternas.
             </p>
           </div>
 
           {/* WhatsApp CTA */}
           <div className={`mb-12 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Button variant="whatsapp" size="xl" asChild className="group animate-pulse hover:animate-none">
+            <Button variant="whatsapp" size="xl" asChild className="group">
               <a
                 href="https://wa.me/5544998611548"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessageCircle className="w-6 h-6 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                <FaWhatsapp className="!w-6 !h-6" />
+
                 Falar no WhatsApp
               </a>
             </Button>

@@ -24,22 +24,22 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const showSolidHeader = isScrolled || isMobileMenuOpen;
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-soft py-3"
-          : "bg-foreground/80 backdrop-blur-sm py-5"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showSolidHeader
+          ? "bg-background shadow-md py-3"
+          : "bg-transparent py-5"
+        }`}
     >
-      <div className="container-custom flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <a href="#inicio" className="flex items-center">
           <img
             src={logo}
             alt="Exclusiva Foto e Vídeo"
-            className={`h-12 md:h-14 w-auto transition-all duration-300 ${
-              isScrolled ? "" : "brightness-0 invert"
-            }`}
+            className={`h-12 md:h-16 w-auto transition-all duration-300 ${showSolidHeader ? "" : "brightness-0 invert"
+              }`}
           />
         </a>
 
@@ -49,24 +49,25 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className={`link-underline text-sm font-medium transition-colors ${
-                isScrolled
-                  ? "text-foreground hover:text-primary"
-                  : "text-primary-foreground hover:text-primary"
-              }`}
+              className={`text-sm font-medium transition-colors hover:text-primary ${showSolidHeader ? "text-foreground" : "text-white"
+                }`}
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* CTA Button */}
+        {/* CTA Button (Desktop) */}
         <div className="hidden lg:block">
-          <Button 
-            variant={isScrolled ? "hero" : "outline"} 
-            size="lg" 
+          <Button
+            variant={showSolidHeader ? "default" : "outline"}
+            size="lg"
             asChild
-            className={!isScrolled ? "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground" : ""}
+            className={
+              !showSolidHeader
+                ? "border-white text-white hover:bg-white hover:text-black"
+                : ""
+            }
           >
             <a
               href="https://wa.me/5544998611548"
@@ -80,9 +81,8 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className={`lg:hidden p-2 transition-colors ${
-            isScrolled ? "text-foreground" : "text-primary-foreground"
-          }`}
+          className={`lg:hidden p-2 transition-colors ${showSolidHeader ? "text-foreground" : "text-white"
+            }`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Menu"
         >
@@ -90,26 +90,26 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md shadow-card transition-all duration-300 ${
-          isMobileMenuOpen
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 -translate-y-4 pointer-events-none"
-        }`}
+        className={`lg:hidden absolute top-full left-0 right-0 bg-background border-t border-border/10 shadow-xl transition-all duration-300 ease-in-out origin-top ${isMobileMenuOpen
+            ? "opacity-100 scale-y-100 visible"
+            : "opacity-0 scale-y-95 invisible"
+          }`}
       >
-        <nav className="container-custom py-6 flex flex-col gap-4">
+        {/* AQUI ESTAVA A MUDANÇA: Removi h-screen */}
+        <nav className="container mx-auto px-4 py-6 flex flex-col gap-4 bg-background">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-foreground hover:text-primary font-medium py-2 transition-colors"
+              className="text-foreground text-lg font-medium hover:text-primary transition-colors border-b border-border/50 pb-3"
             >
               {link.name}
             </a>
           ))}
-          <Button variant="hero" size="lg" className="mt-4" asChild>
+          <Button size="lg" className="mt-2 w-full" asChild>
             <a
               href="https://wa.me/5544998611548"
               target="_blank"

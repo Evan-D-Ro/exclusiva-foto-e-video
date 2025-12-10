@@ -2,39 +2,12 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import heroImage from "@/assets/hero-graduation.jpg";
+import { FaWhatsapp } from "react-icons/fa";
 
 const CTADivider = () => {
-  const [isInView, setIsInView] = useState(false);
+  const [isInView, setIsInView] = useState(true);
   const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setScrollY(rect.top);
-      }
-    };
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <section
@@ -42,7 +15,7 @@ const CTADivider = () => {
       className="relative py-24 md:py-32 lg:py-40 overflow-hidden"
     >
       {/* Parallax Background */}
-      <div 
+      <div
         className="absolute inset-0"
         style={{
           transform: `translateY(${scrollY * 0.1}px)`,
@@ -54,13 +27,13 @@ const CTADivider = () => {
           className="w-full h-full object-cover scale-110"
         />
       </div>
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-foreground/85" />
-      
+
       {/* Animated Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 animate-gradient-x" />
-      
+
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-10 w-2 h-2 bg-primary rounded-full animate-float" />
@@ -87,10 +60,10 @@ const CTADivider = () => {
               <span className="relative">
                 contada com arte
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
-                  <path 
-                    d="M2 10C50 2 100 2 150 6C200 10 250 10 298 2" 
-                    stroke="hsl(var(--primary))" 
-                    strokeWidth="3" 
+                  <path
+                    d="M2 10C50 2 100 2 150 6C200 10 250 10 298 2"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth="3"
                     strokeLinecap="round"
                     className="animate-draw-line"
                     style={{
@@ -106,16 +79,16 @@ const CTADivider = () => {
 
           {/* Subtitle */}
           <p className={`text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10 transition-all duration-700 delay-200 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Cada formatura é única. Cada momento, irrepetível. 
+            Cada formatura é única. Cada momento, irrepetível.
             <span className="block mt-2 font-medium text-primary-foreground">Vamos eternizar o seu juntos?</span>
           </p>
 
           {/* CTA Button */}
           <div className={`transition-all duration-700 delay-300 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Button 
-              variant="hero" 
-              size="xl" 
-              asChild 
+            <Button
+              variant="hero"
+              size="xl"
+              asChild
               className="group relative overflow-hidden shadow-2xl shadow-primary/30"
             >
               <a
@@ -124,7 +97,7 @@ const CTADivider = () => {
                 rel="noopener noreferrer"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-primary-foreground/0 via-primary-foreground/30 to-primary-foreground/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <MessageCircle className="w-5 h-5 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                <FaWhatsapp className="!w-6 !h-6 transition-transform group-hover:scale-110 group-hover:rotate-12" />
                 Solicite seu orçamento
               </a>
             </Button>
@@ -132,15 +105,7 @@ const CTADivider = () => {
         </div>
       </div>
 
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 60" fill="none" className="w-full">
-          <path 
-            d="M0 60V20C240 60 480 0 720 20C960 40 1200 0 1440 20V60H0Z" 
-            fill="hsl(var(--background))"
-          />
-        </svg>
-      </div>
+
     </section>
   );
 };

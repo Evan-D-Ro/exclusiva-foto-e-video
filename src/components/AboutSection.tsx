@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import aboutImage from "@/assets/about-team.jpg";
-import { Camera, Heart, Award, Users } from "lucide-react";
+import { Camera, CheckCircle2 } from "lucide-react";
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,7 +13,7 @@ const AboutSection = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 } // Dispara um pouco antes para suavidade
     );
 
     if (sectionRef.current) {
@@ -24,87 +24,87 @@ const AboutSection = () => {
   }, []);
 
   const stats = [
-    { icon: Camera, value: "10+", label: "Anos de experiência" },
-    { icon: Heart, value: "5000+", label: "Formandos atendidos" },
-    { icon: Award, value: "100%", label: "Satisfação garantida" },
-    { icon: Users, value: "50+", label: "Turmas por ano" },
+    { value: "10+", label: "Anos de História" },
+    { value: "5k+", label: "Formandos" },
+    { value: "50+", label: "Turmas/Ano" },
   ];
 
   return (
     <section
       ref={sectionRef}
       id="sobre"
-      className="section-padding bg-background relative overflow-hidden"
+      className="pt-24 pb-12 sm:py-32 bg-background relative overflow-hidden"
     >
-      {/* Subtle Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 to-background" />
+      {/* Background Decorativo Minimalista */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
 
-      <div className="container-custom relative z-10">
-        {/* Header */}
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold tracking-widest uppercase text-sm mb-6">
-            Quem Somos
-          </span>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-            Transformando momentos em <span className="text-primary">memórias eternas</span>
-          </h2>
-        </div>
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
 
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
-          {/* Image */}
-          <div className={`relative transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <div className="relative rounded-2xl overflow-hidden shadow-xl">
+          {/* LADO ESQUERDO: Imagem Editorial */}
+          <div className={`relative w-full lg:w-5/12 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+            <div className="relative aspect-[3/4] overflow-hidden rounded-sm group">
               <img
                 src={aboutImage}
                 alt="Equipe Exclusiva Foto e Vídeo"
-                className="w-full h-[450px] lg:h-[550px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent" />
+                className="
+    w-full h-full object-cover
+    grayscale group-hover:grayscale-0
+    transition-all duration-1000 ease-in-out
+    group-hover:scale-105
+  "              />
+              {/* Moldura sutil */}
+              <div className="absolute inset-0 border-[1px] border-white/10" />
             </div>
-            
-            {/* Accent Elements */}
-            <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-primary/20 rounded-2xl -z-10" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10" />
-          </div>
 
-          {/* Text Content */}
-          <div className={`space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <p className="text-xl md:text-2xl text-foreground font-light leading-relaxed">
-              A <strong className="text-primary font-semibold">Exclusiva Foto e Vídeo</strong> é especializada em registrar 
-              a emoção das formaturas e transformar esses momentos em álbuns feitos com carinho, 
-              qualidade e atenção aos detalhes.
-            </p>
-
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Fotografamos cada etapa do seu grande dia e selecionamos os melhores registros 
-              para montar um álbum exclusivo, pensado para valorizar sua trajetória.
-            </p>
-
-            <blockquote className="relative pl-6 border-l-4 border-primary py-2">
-              <p className="text-lg italic text-foreground/80">
-                "Com olhar profissional e sensibilidade, criamos álbuns que contam histórias — a sua história."
+            {/* Elemento Decorativo Flutuante */}
+            <div className="absolute -bottom-8 -right-8 bg-background p-6 shadow-2xl max-w-[200px] hidden md:block border-l-4 border-primary">
+              <p className="font-heading text-lg leading-tight font-bold text-foreground">
+                Qualidade <br /> Garantida
               </p>
-            </blockquote>
-
-            <p className="text-lg font-medium text-primary">
-              Na Exclusiva Foto e Vídeo, sua formatura se torna uma lembrança eterna.
-            </p>
-          </div>
-        </div>
-
-        {/* Stats Grid */}
-        <div className={`grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="group p-6 md:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center"
-            >
-              <stat.icon className="w-8 h-8 text-primary mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" />
-              <p className="text-3xl md:text-4xl font-bold text-foreground mb-2">{stat.value}</p>
-              <p className="text-sm text-muted-foreground">{stat.label}</p>
+              <div className="flex gap-1 mt-2">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                  <div key={i} className="w-2 h-2 bg-primary rounded-full" />
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* LADO DIREITO: Conteúdo */}
+          <div className={`flex-1 flex flex-col justify-center pt-8 transition-all duration-1000 delay-200 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+
+            <div className="flex items-center gap-3 mb-6">
+              <Camera className="w-5 h-5 text-primary" />
+              <span className="text-sm font-bold tracking-[0.2em] uppercase text-muted-foreground">
+                Nossa Essência
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
+              Não contamos apenas histórias. <br />
+              <span className="text-primary">Nós as eternizamos.</span>
+            </h2>
+
+            <div className="space-y-6 text-lg text-muted-foreground font-light leading-relaxed mb-12 border-l border-border pl-6">
+              <p>
+                A <strong>Exclusiva Foto e Vídeo</strong> nasceu da paixão por capturar o irrepetível. Entendemos que a formatura não é apenas um evento; é o clímax de anos de dedicação.
+              </p>
+              <p>
+                Nossa abordagem foge do tradicional. Misturamos a técnica do fotojornalismo com a estética de editoriais de moda, garantindo que você não tenha apenas fotos, mas obras de arte da sua própria história.
+              </p>
+            </div>
+
+            {/* Checkpoints rápidos */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+              {['Equipe Especializada', 'Edição Premium', 'Entrega Ágil', 'Álbuns de Luxo'].map((item) => (
+                <div key={item} className="flex items-center gap-2 text-foreground/80 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-primary" />
+                  {item}
+                </div>
+              ))}
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
