@@ -1,6 +1,6 @@
 import { Heart, Shield, Eye, Handshake, Star, Users } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import heroImage from "@/assets/hero-graduation.jpg";
+import heroImage from "@/assets/10.jpg";
 
 const differentials = [
   {
@@ -57,16 +57,16 @@ const DifferentialsSection = () => {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="diferenciais" 
+      id="diferenciais"
       className="section-padding relative overflow-hidden"
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img 
-          src={heroImage} 
-          alt="" 
+        <img
+          src={heroImage}
+          alt=""
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-foreground/90" />
@@ -89,7 +89,7 @@ const DifferentialsSection = () => {
             <span className="text-primary">Exclusiva?</span>
           </h2>
           <p className="text-primary-foreground/70 text-lg">
-            Nosso compromisso é garantir que cada formando receba um registro fiel, 
+            Nosso compromisso é garantir que cada formando receba um registro fiel,
             bonito e emocionado do seu grande dia.
           </p>
         </div>
@@ -99,9 +99,8 @@ const DifferentialsSection = () => {
           {differentials.map((diff, index) => (
             <div
               key={diff.title}
-              className={`group flex gap-5 p-6 rounded-2xl bg-primary-foreground/5 hover:bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/10 transition-all duration-500 hover:scale-[1.02] ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`group flex gap-5 p-6 rounded-2xl bg-primary-foreground/5 hover:bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/10 transition-all duration-500 hover:scale-[1.02] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="flex-shrink-0">
@@ -124,10 +123,10 @@ const DifferentialsSection = () => {
         {/* Mission Statement */}
         <div className={`mt-16 text-center max-w-4xl mx-auto transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <blockquote className="text-xl md:text-2xl font-light italic text-primary-foreground/80 leading-relaxed relative">
-            <span className="absolute -top-6 -left-4 text-6xl text-primary/30 font-heading">"</span>
-            Cada álbum é elaborado por profissionais experientes, com seleção 
+            <span className="absolute -top-3 -left-1 text-6xl text-primary/30 font-heading">"</span>
+            Cada álbum é elaborado por profissionais experientes, com seleção
             cuidadosa das fotos, diagramação harmoniosa e acabamento de alta qualidade.
-            <span className="absolute -bottom-8 -right-4 text-6xl text-primary/30 font-heading">"</span>
+            <span className="absolute -bottom-10 -right-0 mr-2 text-6xl text-primary/30 font-heading">"</span>
           </blockquote>
         </div>
       </div>

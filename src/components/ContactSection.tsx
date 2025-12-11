@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import galleryImage from "@/assets/gallery-2.jpg";
+import galleryImage from "@/assets/4.jpg";
 import { FaWhatsapp } from "react-icons/fa";
 
 const ContactSection = () => {
@@ -36,9 +36,9 @@ const ContactSection = () => {
         <img
           src={galleryImage}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-[20%] md:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-accent/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/70 to-accent/60" />
       </div>
 
       {/* Animated Decorative Elements */}
@@ -58,7 +58,7 @@ const ContactSection = () => {
               Vamos eternizar sua{" "}
               <span className="text-primary">formatura?</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
+            <p className="text-secondary-foreground text-lg mb-10 max-w-2xl mx-auto">
               Entre em contato conosco e solicite um orçamento. Estamos prontos para
               transformar seu grande dia em lembranças eternas.
             </p>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo-exclusiva.png";
 
@@ -29,8 +29,8 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showSolidHeader
-          ? "bg-background shadow-md py-3"
-          : "bg-white/10 backdrop-blur-md py-3"
+        ? "bg-background shadow-md py-3"
+        : "bg-white/10 backdrop-blur-md py-3"
         }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -75,6 +75,7 @@ const Header = () => {
               rel="noopener noreferrer"
             >
               Fale Conosco
+              <ArrowRight className="w-4 h-4 ml-2" />
             </a>
           </Button>
         </div>
@@ -93,8 +94,8 @@ const Header = () => {
       {/* Mobile Menu Dropdown */}
       <div
         className={`lg:hidden absolute top-full left-0 right-0 bg-background border-t border-border/10 shadow-xl transition-all duration-300 ease-in-out origin-top ${isMobileMenuOpen
-            ? "opacity-100 scale-y-100 visible"
-            : "opacity-0 scale-y-95 invisible"
+          ? "opacity-100 scale-y-100 visible"
+          : "opacity-0 scale-y-95 invisible"
           }`}
       >
         {/* AQUI ESTAVA A MUDANÇA: Removi h-screen */}

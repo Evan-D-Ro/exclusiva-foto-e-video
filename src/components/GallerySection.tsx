@@ -1,19 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Camera, Aperture, Focus } from "lucide-react";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
+import gallery1 from "@/assets/17.png";
+import gallery2 from "@/assets/19.jpg";
+import gallery3 from "@/assets/13.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
+import gallery5 from "@/assets/18.png";
+import gallery6 from "@/assets/gallery-5.jpg";
 
 const galleryImages = [
   { src: gallery1, alt: "Álbum de formatura premium" },
-  { src: gallery2, alt: "Formanda com diploma" },
-  { src: gallery3, alt: "Celebração de formatura" },
+  { src: gallery2, alt: "Celebração de formatura" },
+  { src: gallery3, alt: "Formanda com diploma" },
   { src: gallery4, alt: "Entrega de diploma" },
-  { src: gallery5, alt: "Fotógrafo em ação" },
-  { src: gallery6, alt: "Detalhes do álbum" },
+  { src: gallery5, alt: "Formando com diploma" },
+  { src: gallery6, alt: "Fotógrafo em ação" },
 ];
 
 const GallerySection = () => {
@@ -41,13 +41,14 @@ const GallerySection = () => {
 
   return (
     <section ref={sectionRef} id="portfolio" className="section-padding bg-foreground relative overflow-hidden">
-      {/* Camera Viewfinder Background - AJUSTADO PARA MOBILE */}
+      {/* Camera Viewfinder Background - AJUSTADO PARA MOBILE E TABLET */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        {/* Corner Brackets - Margens menores no mobile (top-4/left-4) e normais no desktop (md:top-8) */}
-        <div className="absolute top-4 left-4 md:top-8 md:left-8 w-12 h-12 md:w-16 md:h-16 border-l-2 border-t-2 border-primary/30" />
-        <div className="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 md:w-16 md:h-16 border-r-2 border-t-2 border-primary/30" />
-        <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 w-12 h-12 md:w-16 md:h-16 border-l-2 border-b-2 border-primary/30" />
-        <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-12 h-12 md:w-16 md:h-16 border-r-2 border-b-2 border-primary/30" />
+
+        {/* Corner Brackets - Agora mudam apenas no LG (Desktop Real) */}
+        <div className="absolute top-4 left-4 lg:top-8 lg:left-8 w-12 h-12 lg:w-16 lg:h-16 border-l-2 border-t-2 border-primary/30" />
+        <div className="absolute top-4 right-4 lg:top-8 lg:right-8 w-12 h-12 lg:w-16 lg:h-16 border-r-2 border-t-2 border-primary/30" />
+        <div className="absolute bottom-4 left-4 lg:bottom-8 lg:left-8 w-12 h-12 lg:w-16 lg:h-16 border-l-2 border-b-2 border-primary/30" />
+        <div className="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 w-12 h-12 lg:w-16 lg:h-16 border-r-2 border-b-2 border-primary/30" />
 
         {/* Center Focus Point */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 opacity-20">
@@ -66,8 +67,8 @@ const GallerySection = () => {
           ))}
         </div>
 
-        {/* Camera Info Overlay */}
-        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 text-primary-foreground/40 font-mono text-xs space-y-1 hidden md:block">
+        {/* Camera Info Overlay - Oculto em tablets verticais (hidden lg:block) */}
+        <div className="absolute bottom-8 left-8 lg:bottom-12 lg:left-12 text-primary-foreground/40 font-mono text-xs space-y-1 hidden lg:block">
           <div className="flex items-center gap-2">
             <Aperture className="w-3 h-3" />
             <span>f/2.8</span>
@@ -78,7 +79,7 @@ const GallerySection = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 text-primary-foreground/40 font-mono text-xs hidden md:block">
+        <div className="absolute bottom-8 right-8 lg:bottom-12 lg:right-12 text-primary-foreground/40 font-mono text-xs hidden lg:block">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
             <span>REC</span>
@@ -86,27 +87,27 @@ const GallerySection = () => {
         </div>
       </div>
 
-      {/* Adicionado padding extra no container para mobile (px-6 py-4) para afastar das bordas */}
-      <div className="container-custom relative z-10 px-6 py-4 md:px-0 md:py-0">
-        {/* Header */}
-        {/* Reduzida a margem inferior no mobile (mb-10 md:mb-16) */}
-        <div className={`text-center max-w-3xl mx-auto mb-10 md:mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      {/* Container: Mantém padding mobile até chegar em telas LG */}
+      <div className="container-custom relative z-10 px-6 py-4 lg:px-0 lg:py-0">
+
+        {/* Header - Margens menores até LG */}
+        <div className={`text-center max-w-3xl mx-auto mb-10 lg:mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary font-semibold tracking-widest uppercase text-sm mb-6">
             <Camera className="w-4 h-4" />
-            Portfólio
+            Eternize seus momentos
           </div>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-            Momentos que <span className="text-primary">eternizamos</span>
+            Registre cada <span className="text-primary">instante!</span>
           </h2>
           <p className="text-primary-foreground/70 text-lg">
-            Confira alguns dos registros que transformamos em lembranças inesquecíveis.
+            Ajudamos você a criar lembranças inesquecíveis.
           </p>
         </div>
 
         {/* Gallery Grid with Camera Frame Effect */}
         <div className="relative m-4">
-          {/* Main Camera Frame - Ajustado inset para mobile */}
-          <div className="absolute -inset-2 md:-inset-8 border-2 border-primary-foreground/10 rounded-lg pointer-events-none">
+          {/* Main Camera Frame - Inset ajustado para só expandir no LG */}
+          <div className="absolute -inset-2 lg:-inset-8 border-2 border-primary-foreground/10 rounded-lg pointer-events-none">
             {/* Frame corners */}
             <div className="absolute -top-1 -left-1 w-6 h-6 border-l-4 border-t-4 border-primary rounded-tl" />
             <div className="absolute -top-1 -right-1 w-6 h-6 border-r-4 border-t-4 border-primary rounded-tr" />
@@ -114,7 +115,8 @@ const GallerySection = () => {
             <div className="absolute -bottom-1 -right-1 w-6 h-6 border-r-4 border-b-4 border-primary rounded-br" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          {/* GRID: Mantém 2 colunas até o LG (1024px). Só vira 3 no desktop real */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
             {galleryImages.map((image, index) => (
               <div
                 key={index}
@@ -160,7 +162,7 @@ const GallerySection = () => {
         </div>
       </div>
 
-      {/* Lightbox (Sem alterações necessárias aqui) */}
+      {/* Lightbox (Sem alterações) */}
       {selectedImage !== null && (
         <div
           className="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-md flex items-center justify-center p-4 animate-shutter-open"

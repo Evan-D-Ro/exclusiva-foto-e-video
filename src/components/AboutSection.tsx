@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import aboutImage from "@/assets/about-team.jpg";
-import { Camera, CheckCircle2 } from "lucide-react";
+import aboutImage from "@/assets/12.jpg";
+import { Camera, Heart, Sparkles, ScrollText } from "lucide-react"; // Novos ícones
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,7 +13,7 @@ const AboutSection = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.15 } // Dispara um pouco antes para suavidade
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -23,85 +23,107 @@ const AboutSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const stats = [
-    { value: "10+", label: "Anos de História" },
-    { value: "5k+", label: "Formandos" },
-    { value: "50+", label: "Turmas/Ano" },
+  // Ícones para os pontos de compromisso
+  const commitmentPoints = [
+    { icon: Camera, label: "Registro Fiel e Emocionado" },
+    { icon: Sparkles, label: "Seleção Cuidadosa das fotos" },
+    { icon: ScrollText, label: "Diagramação Harmoniosa" },
+    { icon: Heart, label: "Acabamento de Alta Qualidade" },
   ];
 
   return (
     <section
       ref={sectionRef}
       id="sobre"
-      className="pt-24 pb-12 sm:py-32 bg-background relative overflow-hidden"
+      className="py-20 sm:py-32 bg-background relative overflow-hidden"
     >
-      {/* Background Decorativo Minimalista */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
+      {/* Decoração de Fundo Suave (Glow) */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 -z-10 pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
-          {/* LADO ESQUERDO: Imagem Editorial */}
-          <div className={`relative w-full lg:w-5/12 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
-            <div className="relative aspect-[3/4] overflow-hidden rounded-sm group">
+          {/* LADO ESQUERDO: Imagem com nova proporção e estilo */}
+          <div className={`relative w-full lg:w-1/2 max-w-md lg:max-w-none transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
+            {/* Elemento decorativo atrás da imagem */}
+            <div className="absolute inset-0 bg-primary/10 translate-x-4 translate-y-4 rounded-3xl -z-10" />
+
+            <div className="relative aspect-[5/5] rounded-3xl overflow-hidden shadow-xl group">
               <img
                 src={aboutImage}
-                alt="Equipe Exclusiva Foto e Vídeo"
+                alt="Equipe Exclusiva Foto e Vídeo em ação"
                 className="
-    w-full h-full object-cover
-    grayscale group-hover:grayscale-0
-    transition-all duration-1000 ease-in-out
-    group-hover:scale-105
-  "              />
-              {/* Moldura sutil */}
-              <div className="absolute inset-0 border-[1px] border-white/10" />
+                  w-full h-full object-cover
+                  grayscale group-hover:grayscale-0
+                  transition-all duration-700 ease-in-out
+                  scale-100 group-hover:scale-105
+                "
+              />
+              {/* Overlay gradiente sutil na imagem */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
             </div>
 
-            {/* Elemento Decorativo Flutuante */}
-            <div className="absolute -bottom-8 -right-8 bg-background p-6 shadow-2xl max-w-[200px] hidden md:block border-l-4 border-primary">
-              <p className="font-heading text-lg leading-tight font-bold text-foreground">
-                Qualidade <br /> Garantida
-              </p>
-              <div className="flex gap-1 mt-2">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                  <div key={i} className="w-2 h-2 bg-primary rounded-full" />
-                ))}
+            {/* Selo Flutuante (opcional, pode remover se achar demais) */}
+            <div className="absolute -bottom-6 -right-6 bg-card p-4 rounded-2xl shadow-lg border border-border/50 hidden md:flex items-center gap-3">
+              <Heart className="w-6 h-6 text-primary fill-primary/20" />
+              <div>
+                <p className="font-bold text-foreground leading-none">Emoção</p>
+                <p className="text-sm text-muted-foreground">Em cada detalhe</p>
               </div>
             </div>
           </div>
 
-          {/* LADO DIREITO: Conteúdo */}
-          <div className={`flex-1 flex flex-col justify-center pt-8 transition-all duration-1000 delay-200 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+          {/* LADO DIREITO: Conteúdo Baseado no Novo Texto */}
+          <div className={`flex-1 flex flex-col pt-8 lg:pt-0 transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
-            <div className="flex items-center gap-3 mb-6">
-              <Camera className="w-5 h-5 text-primary" />
-              <span className="text-sm font-bold tracking-[0.2em] uppercase text-muted-foreground">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="h-px w-8 bg-primary"></span>
+              <span className="text-sm font-bold tracking-wider uppercase text-primary">
                 Nossa Essência
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
-              Não contamos apenas histórias. <br />
-              <span className="text-primary">Nós as eternizamos.</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+              Transformamos sua formatura em uma <span className="text-primary italic relative">
+                lembrança eterna.
+                {/* Sublinhado decorativo */}
+              </span>
             </h2>
 
-            <div className="space-y-6 text-lg text-muted-foreground font-light leading-relaxed mb-12 border-l border-border pl-6">
+            <div className="space-y-6 text-lg text-muted-foreground font-light leading-relaxed">
               <p>
-                A <strong>Exclusiva Foto e Vídeo</strong> nasceu da paixão por capturar o irrepetível. Entendemos que a formatura não é apenas um evento; é o clímax de anos de dedicação.
+                A <strong>Exclusiva Foto e Vídeo</strong> é especializada em registrar a emoção das formaturas. Mais do que fotos, criamos álbuns feitos com carinho, qualidade e atenção aos mínimos detalhes.
               </p>
+
+              {/* Card de Destaque para o Processo */}
+              <div className="bg-primary/5 p-6 rounded-2xl border border-border/50 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5">
+                  <Sparkles size={80} />
+                </div>
+                <p className="relative z-10 font-medium text-foreground/90 text-base">
+                  "Fotografamos cada etapa do seu grande dia. Após o evento, nossa equipe seleciona os melhores registros para montar um álbum exclusivo, pensado para valorizar sua trajetória com olhar profissional e sensibilidade."
+                </p>
+              </div>
+
               <p>
-                Nossa abordagem foge do tradicional. Misturamos a técnica do fotojornalismo com a estética de editoriais de moda, garantindo que você não tenha apenas fotos, mas obras de arte da sua própria história.
+                Cada página é construída para transmitir a emoção, o orgulho e a conquista que tornam esse momento tão especial, contando a <em>sua</em> história.
               </p>
             </div>
 
-            {/* Checkpoints rápidos */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-              {['Equipe Especializada', 'Edição Premium', 'Entrega Ágil', 'Álbuns de Luxo'].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-foreground/80 font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-primary" />
-                  {item}
-                </div>
-              ))}
+            {/* Seção "Nosso Compromisso" */}
+            <div className="mt-10 pt-8 border-t border-border/40">
+              <h3 className="text-lg font-semibold mb-4 text-foreground flex items-center gap-2">
+                <ScrollText className="w-5 h-5 text-primary" />
+                Nosso Compromisso
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                {commitmentPoints.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2 text-muted-foreground text-sm sm:text-base">
+                    <item.icon className="w-4 h-4 text-primary shrink-0" />
+                    <span>{item.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
           </div>

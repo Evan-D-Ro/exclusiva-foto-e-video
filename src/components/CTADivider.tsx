@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import heroImage from "@/assets/hero-graduation.jpg";
+import heroImage from "@/assets/15.png";
 import { FaWhatsapp } from "react-icons/fa";
 
 const CTADivider = () => {

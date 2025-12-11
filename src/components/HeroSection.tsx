@@ -1,18 +1,18 @@
-import { Button } from "@/components/ui/button"; 
-import { ArrowRight, Camera, Video } from "lucide-react"; 
-import heroImage from "@/assets/hero-graduation.jpg"; 
-import { useEffect, useState } from "react"; 
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Camera, Video } from "lucide-react";
+import heroImage from "@/assets/hero-graduation.jpg";
+import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import GraduationCapsAnimation from "@/components/GraduationCapsAnimation"; 
+import GraduationCapsAnimation from "@/components/GraduationCapsAnimation";
 
-const HeroSection = () => { 
+const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   // Ícones animando
   const icons = [Camera, Video];
   const [iconIndex, setIconIndex] = useState(0);
 
-  useEffect(() => { 
+  useEffect(() => {
     setIsVisible(true);
 
     const interval = setInterval(() => {
@@ -24,28 +24,28 @@ const HeroSection = () => {
 
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden">
-      
+
       {/* 1. Background Image */}
       <div className="absolute inset-0">
-        <img 
-          src={heroImage} 
-          alt="Formandos celebrando" 
-          className="w-full h-full object-cover transition-transform duration-[15s] ease-out scale-105 hover:scale-110" 
+        <img
+          src={heroImage}
+          alt="Formandos celebrando"
+          className="w-full h-full object-cover transition-transform duration-[15s] ease-out scale-105 hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent sm:via-black/20" />
       </div>
 
       {/* Animação dos chapéus */}
-      <GraduationCapsAnimation /> 
+      <GraduationCapsAnimation />
 
       {/* Conteúdo */}
-      <div className="relative z-10 container mx-auto h-full flex flex-col justify-end pb-28 sm:pb-42 px-4 sm:px-6">
+      <div className="relative z-10 container mx-auto h-full flex flex-col justify-center px-6 sm:px-12 lg:px-20 lg:pt-12 md:pt-0">
         <div className={`max-w-2xl transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
           {/* Tagline com ícone animado */}
           <div className="flex items-center gap-3 mb-6">
-            <div className={`h-[1px] w-12 bg-primary transition-all duration-1000 delay-300 ${isVisible ? 'w-12' : 'w-0'}`} />
+
 
             <div className="flex items-center gap-2 text-primary-foreground/80 text-sm font-medium tracking-[0.2em] uppercase">
               {/* Ícone animando */}
