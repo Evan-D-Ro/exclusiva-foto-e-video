@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Camera, Video } from "lucide-react";
-import heroImage from "@/assets/hero-graduation.jpg";
+import heroImage from "@/assets/21.jpg";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import GraduationCapsAnimation from "@/components/GraduationCapsAnimation";
