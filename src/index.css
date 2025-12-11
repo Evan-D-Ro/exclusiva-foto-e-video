@@ -430,3 +430,45 @@
 .animate-shutter-open {
   animation: shutter-open 0.5s ease-out forwards;
 }
+
+
+/* --- ANIMAÇÃO DE CHAPÉUS DE FORMATURA VOANDO (BASEADO EM ÍCONE) --- */
+
+/* 1. Define o caminho da animação (Permanece o mesmo) */
+@keyframes throw-and-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    /* Ponto mais alto, fora da tela e com rotação */
+    transform: translate(calc(var(--offset-x) * 10vw), -100vh) rotate(360deg);
+    opacity: 1;
+  }
+  100% {
+    /* Ponto final (caindo na tela ou levemente fora) */
+    transform: translate(calc(var(--offset-x-end) * 10vw), 100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+
+.graduation-cap-throw {
+  position: absolute;
+  opacity: 0;
+
+  animation-name: throw-and-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  
+  z-index: 5; 
+  pointer-events: none; 
+  animation-fill-mode: both;
+
+  color: white;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+}
+
+
+
+
