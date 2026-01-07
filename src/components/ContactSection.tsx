@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import galleryImage from "@/assets/4.jpg";
+import galleryImage from "@/assets/4.webp";
 import { FaWhatsapp } from "react-icons/fa";
 
 const ContactSection = () => {
@@ -104,7 +104,7 @@ const ContactSection = () => {
                 Endereço
               </h3>
               <p className="text-muted-foreground">
-                Rua Paulo Antonio Vieira, 155<br />
+                Rua Paulo Antonio de Oliveira, 155<br />
                 Centro – Santa Fé – PR<br />
                 CEP 86770-000
               </p>

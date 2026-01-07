@@ -1,5 +1,5 @@
 import { Instagram, Facebook } from "lucide-react";
-import logo from "@/assets/logo-exclusiva.png";
+import logo from "@/assets/logo-exclusiva.webp";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,8 +17,8 @@ const Footer = () => {
               className="h-14 w-auto mb-6 brightness-0 invert"
             />
             <p className="text-primary-foreground/70 max-w-md leading-relaxed">
-              Especializada em registrar a emoção das formaturas e transformar 
-              esses momentos em álbuns feitos com carinho, qualidade e atenção 
+              Especializada em registrar a emoção das formaturas e transformar
+              esses momentos em álbuns feitos com carinho, qualidade e atenção
               aos detalhes.
             </p>
             {/* Social Links */}
@@ -86,7 +86,7 @@ const Footer = () => {
               </li>
               <li>
                 <span className="block text-sm text-primary-foreground/50">Endereço</span>
-                Rua Paulo Antonio Vieira, 155<br />
+                Rua Paulo Antonio de Oliveira, 155<br />
                 Centro – Santa Fé – PR<br />
                 CEP 86770-000
               </li>

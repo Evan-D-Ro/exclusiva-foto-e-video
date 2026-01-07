@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Camera, Video } from "lucide-react";
-import heroImage from "@/assets/21.jpg";
+import heroImage from "@/assets/hero-graduation.webp";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import GraduationCapsAnimation from "@/components/GraduationCapsAnimation";
@@ -21,6 +21,24 @@ const HeroSection = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  // --- NOVA FUNÇÃO DE SCROLL (Mesma do Header) ---
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    const headerOffset = 30; // Altura aproximada do header fixo
+
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    } else {
+      console.warn(`Seção "${id}" não encontrada. Verifique se a <section> tem o id correto.`);
+    }
+  };
 
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden">
@@ -45,8 +63,6 @@ const HeroSection = () => {
 
           {/* Tagline com ícone animado */}
           <div className="flex items-center gap-3 mb-6">
-
-
             <div className="flex items-center gap-2 text-primary-foreground/80 text-sm font-medium tracking-[0.2em] uppercase">
               {/* Ícone animando */}
               <div className="relative w-5 h-5">
@@ -60,7 +76,6 @@ const HeroSection = () => {
                   />
                 ))}
               </div>
-
               Exclusiva Foto e Vídeo
             </div>
           </div>
@@ -79,6 +94,8 @@ const HeroSection = () => {
 
           {/* Botões */}
           <div className="flex flex-col sm:flex-row gap-4 items-start">
+
+            {/* Botão WhatsApp (Link externo mantém <a>) */}
             <Button
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 h-12 rounded-none border-l-2 border-white/20 hover:border-white transition-all"
@@ -95,17 +112,18 @@ const HeroSection = () => {
               </a>
             </Button>
 
+            {/* Botão Serviços (Alterado para onClick) */}
             <Button
               variant="outline"
               size="lg"
-              className="bg-transparent border-white/20 text-white hover:bg-white hover:text-black h-12 rounded-none px-8 backdrop-blur-sm transition-all"
-              asChild
+              className="bg-transparent border-white/20 text-white hover:bg-white hover:text-black h-12 rounded-none px-8 backdrop-blur-sm transition-all group"
+              // AQUI ESTÁ A MUDANÇA: Usamos onClick chamando a função
+              onClick={() => scrollToSection("servicos")}
             >
-              <a href="#sobre" className="flex items-center gap-2 group">
-                Ver Portfolio
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              Nossos Serviços
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
+
           </div>
 
         </div>

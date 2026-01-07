@@ -40,17 +40,43 @@ const GallerySection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="portfolio" className="section-padding bg-foreground relative overflow-hidden">
-      {/* Camera Viewfinder Background - AJUSTADO PARA MOBILE E TABLET */}
-      <div className="absolute inset-0 pointer-events-none select-none">
+    <section ref={sectionRef} id="portfolio" className="bg-foreground relative overflow-hidden">
 
-        {/* Corner Brackets - Agora mudam apenas no LG (Desktop Real) */}
-        <div className="absolute top-4 left-4 lg:top-8 lg:left-8 w-12 h-12 lg:w-16 lg:h-16 border-l-2 border-t-2 border-primary/30" />
-        <div className="absolute top-4 right-4 lg:top-8 lg:right-8 w-12 h-12 lg:w-16 lg:h-16 border-r-2 border-t-2 border-primary/30" />
-        <div className="absolute bottom-4 left-4 lg:bottom-8 lg:left-8 w-12 h-12 lg:w-16 lg:h-16 border-l-2 border-b-2 border-primary/30" />
-        <div className="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 w-12 h-12 lg:w-16 lg:h-16 border-r-2 border-b-2 border-primary/30" />
+      {/* --- CAMADA 1: INTERFACE DA CÂMERA (VIEWFINDER) --- */}
+      {/* Adicionei 'container mx-auto' aqui também para que as bordas da câmera acompanhem a largura do conteúdo */}
+      <div className="absolute inset-0 pointer-events-none select-none z-20">
+        <div className="w-full h-full max-w-[1400px] mx-auto relative">
 
-        {/* Center Focus Point */}
+          {/* Cantos (Corner Brackets) - Posicionados dentro do limite max-w */}
+          <div className="absolute top-6 left-6 lg:top-10 lg:left-10 w-12 h-12 lg:w-20 lg:h-20 border-l-[3px] border-t-[3px] border-primary/50" />
+          <div className="absolute top-6 right-6 lg:top-10 lg:right-10 w-12 h-12 lg:w-20 lg:h-20 border-r-[3px] border-t-[3px] border-primary/50" />
+          <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10 w-12 h-12 lg:w-20 lg:h-20 border-l-[3px] border-b-[3px] border-primary/50" />
+          <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10 w-12 h-12 lg:w-20 lg:h-20 border-r-[3px] border-b-[3px] border-primary/50" />
+
+          {/* Info da Câmera (f/2.8, REC) - Alinhados com os cantos */}
+          <div className="absolute bottom-10 left-10 lg:bottom-16 lg:left-16 text-primary-foreground/60 font-mono text-xs space-y-1 hidden md:block">
+            <div className="flex items-center gap-2">
+              <Aperture className="w-4 h-4" />
+              <span>f/2.8</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Focus className="w-4 h-4" />
+              <span>1/250s</span>
+            </div>
+          </div>
+
+          <div className="absolute bottom-10 right-10 lg:bottom-16 lg:right-16 text-primary-foreground/60 font-mono text-xs hidden md:block">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-red-600 rounded-full animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.7)]" />
+              <span className="font-bold tracking-widest">REC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* --- CAMADA 2: ELEMENTOS DE FUNDO (Grades e Foco) --- */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0">
+        {/* Ponto de Foco Central */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 opacity-20">
           <div className="absolute inset-0 border border-primary-foreground/30 rounded-full animate-pulse" />
           <div className="absolute inset-4 border border-primary-foreground/20 rounded-full" />
@@ -60,60 +86,46 @@ const GallerySection = () => {
           </div>
         </div>
 
-        {/* Grid Lines */}
-        <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-10">
+        {/* Linhas da Grade (Rule of Thirds) */}
+        <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-5">
           {[...Array(4)].map((_, i) => (
-            <div key={`v-${i}`} className="border-r border-primary-foreground/30" style={{ gridColumn: i + 1 }} />
+            <div key={`v-${i}`} className="border-r border-primary-foreground/50" style={{ gridColumn: i + 1 }} />
           ))}
-        </div>
-
-        {/* Camera Info Overlay - Oculto em tablets verticais (hidden lg:block) */}
-        <div className="absolute bottom-8 left-8 lg:bottom-12 lg:left-12 text-primary-foreground/40 font-mono text-xs space-y-1 hidden lg:block">
-          <div className="flex items-center gap-2">
-            <Aperture className="w-3 h-3" />
-            <span>f/2.8</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Focus className="w-3 h-3" />
-            <span>1/250s</span>
-          </div>
-        </div>
-
-        <div className="absolute bottom-8 right-8 lg:bottom-12 lg:right-12 text-primary-foreground/40 font-mono text-xs hidden lg:block">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span>REC</span>
-          </div>
+          {[...Array(4)].map((_, i) => (
+            <div key={`h-${i}`} className="border-b border-primary-foreground/50" style={{ gridRow: i + 1 }} />
+          ))}
         </div>
       </div>
 
-      {/* Container: Mantém padding mobile até chegar em telas LG */}
-      <div className="container-custom relative z-10 px-6 py-4 lg:px-0 lg:py-0">
+      {/* --- CAMADA 3: CONTEÚDO PRINCIPAL --- */}
+      {/* MUDANÇAS AQUI: 
+          1. py-24 e md:py-32: Muito padding vertical para o conteúdo não bater nos cantos da câmera.
+          2. px-8 e md:px-16: Padding lateral para afastar das bordas laterais.
+      */}
+      <div className="container mx-auto relative z-10 py-24 px-8 md:py-32 md:px-16 max-w-[1400px]">
 
-        {/* Header - Margens menores até LG */}
-        <div className={`text-center max-w-3xl mx-auto mb-10 lg:mb-16 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary font-semibold tracking-widest uppercase text-sm mb-6">
+        {/* Header */}
+        <div className={`text-center max-w-3xl mx-auto mb-12 lg:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary font-semibold tracking-widest uppercase text-sm mb-6 border border-primary/10">
             <Camera className="w-4 h-4" />
             Eternize seus momentos
           </div>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
+          <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
             Registre cada <span className="text-primary">instante!</span>
           </h2>
-          <p className="text-primary-foreground/70 text-lg">
-            Ajudamos você a criar lembranças inesquecíveis.
+          <p className="text-primary-foreground/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            Ajudamos você a criar lembranças inesquecíveis com qualidade cinematográfica.
           </p>
         </div>
 
-        {/* Gallery Grid with Camera Frame Effect */}
-        <div className="relative m-4">
-          {/* Main Camera Frame - Inset ajustado para só expandir no LG */}
-          <div className="absolute -inset-2 lg:-inset-8 border-2 border-primary-foreground/10 rounded-lg pointer-events-none">
-            {/* Frame corners */}
-            <div className="absolute -top-1 -left-1 w-6 h-6 border-l-4 border-t-4 border-primary rounded-tl" />
-            <div className="absolute -top-1 -right-1 w-6 h-6 border-r-4 border-t-4 border-primary rounded-tr" />
-            <div className="absolute -bottom-1 -left-1 w-6 h-6 border-l-4 border-b-4 border-primary rounded-bl" />
-            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-r-4 border-b-4 border-primary rounded-br" />
-          </div>
+        {/* Grid de Imagens com Moldura Interna */}
+        <div className="relative">
+          {/* Moldura ao redor do Grid (Fina) */}
+          <div className="absolute -inset-4 lg:-inset-8 rounded-xl pointer-events-none" />
+
+          {/* MUDANÇA DO GRID:
+             grid-cols-2 (Mobile/Tablet) -> xl:grid-cols-3 (Apenas telas muito grandes)
+          */}
 
           {/* GRID: Mantém 2 colunas até o LG (1024px). Só vira 3 no desktop real */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
@@ -157,43 +169,32 @@ const GallerySection = () => {
                   <p className="text-primary-foreground/60 text-xs mt-1">Clique para ampliar</p>
                 </div>
               </div>
-            ))}
-          </div>
+            ))}          </div>
         </div>
+
       </div>
 
-      {/* Lightbox (Sem alterações) */}
+      {/* Lightbox (Mantido igual) */}
       {selectedImage !== null && (
         <div
-          className="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-md flex items-center justify-center p-4 animate-shutter-open"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-primary/50" />
-            <div className="absolute top-4 right-4 w-12 h-12 border-r-2 border-t-2 border-primary/50" />
-            <div className="absolute bottom-4 left-4 w-12 h-12 border-l-2 border-b-2 border-primary/50" />
-            <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-primary/50" />
-          </div>
-
           <button
-            className="absolute top-6 right-6 text-primary-foreground p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
+            className="absolute top-6 right-6 text-white/80 hover:text-white transition-colors"
             onClick={() => setSelectedImage(null)}
           >
-            <X className="w-6 h-6" />
+            <X className="w-8 h-8" />
           </button>
 
-          <div className="relative max-w-5xl w-full">
+          <div className="relative max-w-5xl w-full max-h-[90vh]">
             <img
               src={galleryImages[selectedImage].src}
               alt={galleryImages[selectedImage].alt}
-              className="w-full max-h-[85vh] object-contain rounded-lg animate-scale-in"
+              className="w-full h-full object-contain rounded-sm shadow-2xl"
             />
-
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-foreground to-transparent">
-              <p className="text-primary-foreground text-lg font-medium">{galleryImages[selectedImage].alt}</p>
-              <p className="text-primary-foreground/60 text-sm mt-1">
-                {selectedImage + 1} / {galleryImages.length}
-              </p>
+            <div className="text-center mt-4 text-white/50 text-sm font-mono tracking-widest">
+              IMG_{selectedImage + 100}1.RAW
             </div>
           </div>
         </div>
